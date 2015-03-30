@@ -1,8 +1,11 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 /**
  * App - main control class for the BMI Manager
- * Created by Jason on 13/03/2015.
+ * Edited by Alex on 30/03/2015.
  */
 public class App {
     public static void main(String[] args) {
@@ -15,7 +18,9 @@ public class App {
                     "following menu options:\n" +
                     "\t1. Add new patient\n" +
                     "\t2. View patients\n" +
-                    "\t3. Exit\n");
+                    "\t3. Update patient\n" +
+                    "\t4. Remove patient\n" +
+                    "\t5. Exit\n");
 
             System.out.print("Enter choice: ");
             Scanner scanner = new Scanner(System.in);
@@ -36,12 +41,25 @@ public class App {
                     break;
                 }
                 case 3: {
+                    updatePatient(patients, scanner);
+                    break;
+                }
+
+                case 4: {
+                    removePatient(patients, scanner);
+                    break;
+                }
+
+                case 5: {
                     System.out.println("Good bye!");
                     break running;
                 }
+
             }
         }
     }
+
+
 
     private static void viewPatients(Patients patients) {
         for (int i = 0; i < patients.count(); ++i) {
@@ -67,4 +85,38 @@ public class App {
 
         return new Patient(name, age, height, weight);
     }
+
+    private static void removePatient(Patients patients, Scanner scanner) {
+        System.out.println("Enter name of patient to remove: ");
+        String name = scanner.next();
+        patients.removePatientWithName(name);
+        }
+
+
+
+    private static void updatePatient(Patients patients, Scanner scanner) {
+        System.out.println("Enter patient name: ");
+        String name = scanner.nextLine();
+        for (Patient patient : patients.records) {
+            if (patient.getName().equals(name)) {
+
+                System.out.println("Enter new age: ");
+                int age = scanner.nextInt();
+
+                System.out.println("Enter new height: ");
+                double height = scanner.nextDouble();
+
+                System.out.println("enter new weight: ");
+                double weight = scanner.nextDouble();
+
+                patient.setAge(age);
+                patient.setHeight(height);
+                patient.setWeight(weight);
+
+                break;
+            } else
+                System.out.println("Patient not found");
+        }
+    }
+
 }

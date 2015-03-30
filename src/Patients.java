@@ -23,6 +23,24 @@ public class Patients {
         return records.get(i);
     }
 
+    public Patient getPatientWithName (String name) {
+        for (Patient patient : records) {
+            if (patient.getName().equals(name)) {
+                return patient;
+            }
+        }
+        return null;
+    }
+
+    public void removePatientWithName (String name) {
+        for (int i = 0; i < records.size(); i++) {
+            if (records.get(i).getName().equals(name)) {
+                records.remove(i);
+                --i;
+            }
+        }
+    }
+
     public boolean isEmpty() {
         return records.isEmpty();
     }

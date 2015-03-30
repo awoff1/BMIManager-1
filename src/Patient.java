@@ -1,6 +1,6 @@
 /**
  * Patient - represents the details of a individual patient.
- * Created by Jason on 13/03/2015.
+ * Edited by Alex on 30/03/2015.
  */
 public class Patient {
     private String name;
@@ -25,6 +25,18 @@ public class Patient {
 
     public double getBMI() {
         return weight / Math.pow(height, 2);
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 }
 
